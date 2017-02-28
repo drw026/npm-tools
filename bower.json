@@ -1,0 +1,20 @@
+{
+  "name": "npm-tools",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Andrew Reasoa <andrew@zen7.nl>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "luigi": "^2.2.0"
+  }
+}
