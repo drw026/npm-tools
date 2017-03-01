@@ -6,7 +6,8 @@
   "scripts": {
     "scss": "node-sass -v src/scss/ -o dist/css",
     "prebuild": "node-sass src/scss/ -o dist/css",
-    "build": "postcss dist/css/*.css -d dist/css/"
+    "build": "postcss dist/css/*.css -d dist/css/",
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
