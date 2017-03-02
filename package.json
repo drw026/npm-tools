@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "scss": "node-sass -v src/scss/ -o dist/css",
-    "prebuild": "node-sass src/scss/ -o dist/css",
-    "build": "postcss dist/css/*.css -d dist/css/",
+    "prebuild": "node-sass --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
+    "build": "ncp src/index.html dist/index.html",
     "server": "nodemon server.js"
   },
   "author": "",
