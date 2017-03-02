@@ -1,8 +1,8 @@
-var express = require("express");
+var express = require('express');
 var app = express();
 var path = require('path');
-var baseDir = 'app';
 var port = process.env.PORT || 1984;
+var baseDir = 'dist';
 
 // define use for static files
 app.use('/', express.static(path.join(__dirname, baseDir)));
@@ -10,7 +10,7 @@ app.use('/', express.static(path.join(__dirname, baseDir)));
 // set index.html
 app.get('/', function(req, res) {
 
-    res.sendfile('dist/index.html');
+    res.sendFile('index.html');
 
 });
 
