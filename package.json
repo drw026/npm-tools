@@ -1,15 +1,22 @@
 {
   "name": "npm-tools",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frontend tooling with only NPM",
   "main": "index.js",
   "scripts": {
-    "scss": "node-sass -v src/scss/ -o dist/css",
-    "prebuild": "node-sass --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
-    "build": "ncp src/index.html dist/index.html",
-    "server": "nodemon server.js"
+    "createdir": "mkdirp dist/",
+    "clean": "rimraf dist/*",
+    "watch": "npm-run-all -p watch:*",
+    "watch:styles": "node-sass -w --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
+    "watch:html": "chokidar 'src/index.html' --command 'npm run copyhtml'",
+    "watch:scripts": "watchify src/js/main.js -o dist/js/bundle.js -v",
+    "copyhtml": "ncp src/index.html dist/index.html",
+    "scripts": "mkdirp dist/js && browserify src/js/main.js -o dist/js/bundle.js -d",
+    "styles": "node-sass --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
+    "server": "nodemon server.js",
+    "start": "npm-run-all --sequential clean createdir copyhtml styles scripts server"
   },
-  "author": "",
+  "author": "Andrew Reasoa",
   "license": "ISC",
   "browserslist": [
     "> 1%",
@@ -20,12 +27,18 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.5",
+    "browserify": "^14.1.0",
+    "chokidar-cli": "^1.2.0",
     "cssnano": "^3.10.0",
+    "jquery": "^3.1.1",
+    "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.5.0",
     "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
     "parallelshell": "^2.0.0",
     "postcss-cli": "^3.0.0-beta",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "watchify": "^3.9.0"
   }
 }
