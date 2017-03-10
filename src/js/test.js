@@ -1,5 +1,5 @@
 function logTest() {
-    console.log('test module');
+    console.log(typeof $);
 };
 
 module.exports = logTest();

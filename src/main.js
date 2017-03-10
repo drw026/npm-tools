@@ -1,2 +1,2 @@
 global.$ = require('jquery');
-require('./test');
+require('./js/test');
