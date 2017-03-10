@@ -9,11 +9,10 @@
     "watch": "npm-run-all -p watch:*",
     "watch:styles": "node-sass -w --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
     "watch:html": "chokidar 'src/index.html' --command 'npm run copyhtml'",
-    "watch:scripts": "watchify src/js/main.js -o dist/js/bundle.js -v",
     "copyhtml": "ncp src/index.html dist/index.html",
-    "scripts": "mkdirp dist/js && browserify src/js/main.js -o dist/js/bundle.js -d",
+    "scripts": "mkdirp dist/js && webpack",
     "styles": "node-sass --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
-    "server": "nodemon server.js",
+    "server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start": "npm-run-all --sequential clean createdir copyhtml styles scripts server"
   },
   "author": "Andrew Reasoa",
@@ -27,7 +26,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.5",
-    "browserify": "^14.1.0",
     "chokidar-cli": "^1.2.0",
     "cssnano": "^3.10.0",
     "jquery": "^3.1.1",
@@ -39,6 +37,7 @@
     "parallelshell": "^2.0.0",
     "postcss-cli": "^3.0.0-beta",
     "rimraf": "^2.6.1",
-    "watchify": "^3.9.0"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }
