@@ -2,18 +2,18 @@
   "name": "npm-tools",
   "version": "1.0.0",
   "description": "Frontend tooling with only NPM",
-  "main": "index.js",
   "scripts": {
     "createdir": "mkdirp dist/",
     "clean": "rimraf dist/*",
     "watch": "npm-run-all -p watch:*",
     "watch:styles": "node-sass -w --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
-    "watch:html": "chokidar 'src/index.html' --command 'npm run copyhtml'",
-    "copyhtml": "ncp src/index.html dist/index.html",
-    "scripts": "mkdirp dist/js && webpack",
+    "watch:html": "chokidar 'src/index.html' --command 'npm run html'",
+    "watch:scripts": "webpack -d --watch",
+    "html": "ncp src/index.html dist/index.html",
+    "scripts": "mkdirp dist/js && webpack -d",
     "styles": "node-sass --source-map-embed --output-style 'expanded' src/scss/ -o dist/css",
-    "server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "start": "npm-run-all --sequential clean createdir copyhtml styles scripts server"
+    "server": "nodemon server.js",
+    "start": "npm-run-all --sequential clean createdir html styles scripts server"
   },
   "author": "Andrew Reasoa",
   "license": "ISC",
@@ -37,7 +37,6 @@
     "parallelshell": "^2.0.0",
     "postcss-cli": "^3.0.0-beta",
     "rimraf": "^2.6.1",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack": "^2.2.1"
   }
 }
